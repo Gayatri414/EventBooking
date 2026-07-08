@@ -2,10 +2,14 @@ const express=require('express');
 const dotenv=require('dotenv');
 const mongoose=require('mongoose');
 const cors=require('cors');
+const authRoutes=require('./routes/auth.js');
 dotenv.config();
 const app=express();
 app.use(cors());
+app.use(express.json());
 
+//routes
+app.use('/api/auth',authRoutes);
 //mongoose connection
 mongoose.connect(process.env.MONGODB_URI)
 .then(()=>{
